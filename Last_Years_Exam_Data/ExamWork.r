@@ -118,3 +118,19 @@ predict(ad_model, data.frame(percentage_ads = 46))
 
 # ? What is the lower bound of the prediction interval for the price estimate obtained in d. # nolint
 # Give your answer correct to two decimal places.
+predict(ad_model, data.frame(percentage_ads = 46), interval = "prediction") # nolint
+
+# ? The prediction interval for the price estimate obtained in d is
+# ? narrower than the confidence interval for the price estimate?
+# ! FALSE
+
+# ? What is the standard deviation of the residuals from this
+# ? regression model? Give your answer correct to two decimal places.
+summary(ad_model)$sigma
+
+# ? The standard deviation of the residuals is less than the standard deviation of the observed data? # nolint
+# ! TRUE
+
+# ? What percentage of the variation in y has not been explained by x?
+# Give your answer correct to two decimal places.
+1 - summary(ad_model)$r.squared

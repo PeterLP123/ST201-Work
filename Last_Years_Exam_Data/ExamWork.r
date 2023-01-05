@@ -59,4 +59,62 @@ alternative = "two.sided")$conf.int[2]
 
 # Using the t.test() function, carry out a 1-sided 95% hypothesis test
 # such that the alternative hypothesis is 𝜇1>𝜇2,
-# what is the p-value for this t-test? Give your answer to 2 decimal places
+# ? what is the p-value for this t-test? Give your answer to 2 decimal places
+t.test(med_dat$wait_2017, med_dat$wait_2019,
+alternative = "greater")$p.value
+
+# ? There is evidence to support 𝜇1>𝜇2 at the 95% confidence level?
+# ! TRUE
+
+# ? Which of the following is not an assumption of simple linear regression?
+# Normally distributed predictor variables
+# Independence
+# Linear relationship
+# Normally distributed errors
+# ! Normally distributed predictor variables
+
+# ? In simple linear regression, the variable that is being predicted is the:
+# The variable that's usually denoted x
+# categorical variable
+# independent variable
+# response variable
+# ! The response variable
+
+# ? In regression analysis, the variable that is used to explain the change in y is called # nolint
+# the explanatory variable
+# the predictor variable
+# the x variable
+# all of the above are correct
+# ! all of the above are correct
+
+# * A statistician decides to examine the relationship between the price
+# * of a magazine and the percentage of the magazine space that contains advertisements. # nolint
+# You will find the dataset ad_datA.rds in the ST201_Exam folder on the Rstudio server. # nolint
+# The dataset contains the variables percentage_ads and price (euros).
+# Load this dataset into R and answer the questions below.
+
+ad_dat <- readRDS("/workspaces/ST201-Work/Last_Years_Exam_Data/ad_datA.rds")
+ad_dat
+
+# ? Construct a scatter plot for these data with price as the response variable
+# ? Do the data appear to exhibit a negative or positive linear relationship?
+# Scatter plot:
+plot(ad_dat$price, ad_dat$percentage_ads, xlab = "Price", ylab = "Percentage Ads") # nolint
+# ! Negative linear relationship
+
+# ? Fit a linear regression model with price as the response variable.
+# ? What is the estimated regression coefficient for percentage_ads?
+# Linear regression model:
+ad_model <- lm(price ~ percentage_ads, data = ad_dat)
+summary(ad_model)$coefficients[2, 1]
+# ! -0.08
+
+# ? TRUE or FALSE? The coefficient for percentage_ads is significant at the 5% alpha level # nolint
+# ! TRUE
+
+# ? Estimate the price of a magazine with 46 percent of its space containing ads. # nolint
+# Give your answer correct to 2 decimal places.
+predict(ad_model, data.frame(percentage_ads = 46))
+
+# ? What is the lower bound of the prediction interval for the price estimate obtained in d. # nolint
+# Give your answer correct to two decimal places.
